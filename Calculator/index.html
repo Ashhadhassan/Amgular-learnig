@@ -58,6 +58,7 @@
 
     <!-- Keypad -->
     <div class="hello">
+      <button onclick="press('C')">C</button>
       <button onclick="press(1)">1</button>
       <button onclick="press(2)">2</button>
       <button onclick="press(3)">3</button>
@@ -70,8 +71,8 @@
       <button onclick="press(8)">8</button>
       <button onclick="press(9)">9</button>
       <button onclick="setOp('*')">*</button>
-      <button onclick="press(0)">0</button>
       <button onclick="calculate()">=</button>
+      <button onclick="press(0)">0</button>
       <button onclick="press('.')">.</button>
       <button onclick="setOp('/')">/</button>
     </div>
@@ -84,9 +85,15 @@
     let operator = null;
 
     function press(num) {
-      if (num === '.' && current.includes('.')) return;
+      if (num === '.' && current.includes('.')) return; // prevent multiple decimals
       current += num;
       display.innerText = current;
+      if (num == 'C') {
+        display.innerText = 0;
+        operator = null;
+        current='';
+        previous = '';
+      }
     }
 
     function setOp(op) {
@@ -118,4 +125,3 @@
   </script>
 </body>
 </html>
-
